@@ -1,19 +1,29 @@
-let x = 100;
-let xSpeed = 3;
-let y = 200;
-let ySpeed = 2;
+let canvasWidth = 400;
+let canvasHeight = 400;
+let rows = 3;
+let cols = 3;
+let grid = [];
+for (let i = 0; i < rows; i++) {
+	let row = [];
+	for (let j = 0; j < cols; j++) {
+		row.push("");
+	}
+	grid.push(row);
+}
+
+let cellWidth = canvasWidth / cols;
+let cellHeight = canvasHeight / rows;
 function setup() {
-	createCanvas(600, 400);
+	createCanvas(canvasWidth, canvasHeight);
 }
 function draw() {
 	background(100);
-	x += xSpeed;
-	y += ySpeed;
-	circle(x, y, 50);
-	if (x > width - 25 || x < 25) {
-		xSpeed = xSpeed * -1;
-	}
-	if (y > height - 25 || y < 25) {
-		ySpeed = ySpeed * -1;
+	for (let i = 0; i < grid.length; i++) {
+		for (let j = 0; j < grid[i].length; j++) {
+			rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+			fill("black");
+			textSize(50);
+			text(grid[i][j], j * cellWidth + 35, i * cellHeight + 70);
+		}
 	}
 }
